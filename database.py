@@ -58,4 +58,36 @@ def change_password(username, password):
     db.close()
     return True
 
-def addentry()
+def addentry(username, date, numtype, data):
+    f = "timber.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    if empty_db():
+        c.execute('INSERT INTO entries VALUES("%s", "%s", "%s", "%s");' %(username, date, numtype, data))
+        db.commit()
+        db.close()
+        return True
+    if get_entry(username, date) is None:
+        c.execute('INSERT INTO entries VALUES("%s", "%s", "%s", "%s");' %(username, date, numtype, data))
+        db.commit()
+        db.close()
+        return True
+    db.close()
+    return False
+
+#returns a list of the entries under a username
+def getentry(username, date):
+    f = "timber.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('SELECT type, data FROM entries WHERE username="%s" AND date="%s";' %(username, date))
+    results = c.fetchall()
+    if results == []:
+        db.close()
+        return None
+    else:
+        db.close()
+        return results
+    
+print addentry("tina", "051718", "1", "this is my post")
+print getentry("tina", "051718")
