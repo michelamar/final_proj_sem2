@@ -55,6 +55,7 @@ def get_password(username):
         db.close()
         return results[0][0]
 
+#returns true if password is changed
 def change_password(username, password):
     f = "timber.db"
     db = sqlite3.connect(f)
@@ -64,6 +65,8 @@ def change_password(username, password):
     db.close()
     return True
 
+#adds entry to database
+#returns true if entry is added
 def add_entry(username, date, numtype, data):
     f = "timber.db"
     db = sqlite3.connect(f)
