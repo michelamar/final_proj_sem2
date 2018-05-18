@@ -15,7 +15,7 @@ db.close()
 
 #adds user to user database
 #returns true if successful
-def adduser(username, password):
+def add_user(username, password):
     f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
@@ -55,8 +55,6 @@ def get_password(username):
         db.close()
         return results[0][0]
 
-#changes password of user
-#returns true if changed
 def change_password(username, password):
     f = "timber.db"
     db = sqlite3.connect(f)
@@ -66,9 +64,7 @@ def change_password(username, password):
     db.close()
     return True
 
-#adds an entry to the database
-#returns true if added
-def addentry(username, date, numtype, data):
+def add_entry(username, date, numtype, data):
     f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
@@ -86,7 +82,7 @@ def addentry(username, date, numtype, data):
     return False
 
 #returns a list of the entries under a username
-def getentry(username, date):
+def get_entry(username, date):
     f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
