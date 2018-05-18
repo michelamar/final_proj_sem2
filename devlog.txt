@@ -2,3 +2,9 @@
 marchiniM -- 2018-05-18 14:19:47
 Wrote basic flask app outline and login functions
 
+chenT -- 2018-05-18 14:22:00
+finished database
+
+chenT -- 2018-05-18 14:22:19
+combined database with app.py
+
