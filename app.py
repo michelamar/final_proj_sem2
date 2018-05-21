@@ -5,6 +5,11 @@ import sqlite3   #enable control of an sqlite database
 
 app = Flask(__name__)
 
+def make_secret_key():
+    return os.urandom(32)
+
+app.secret_key = make_secret_key()
+
 #-------------------------------database functions-----------------------------
 f = "timber.db"
 db = sqlite3.connect(f)
@@ -97,7 +102,21 @@ def get_entry(username, date):
     else:
         db.close()
         return results
-    
+
+#returns true if user is in database
+def user_exists(username):
+    f = "timber.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('SELECT username FROM users WHERE username="%s"' %(username))
+    results = c.fetchall()
+    if results == []:
+        db.close()
+        return False
+    else:
+        db.close()
+        return True
+
 #------------------------------------flask app--------------------------------
 @app.route('/')
 def root():
@@ -127,6 +146,8 @@ def home():
             else:
                 flash ('Login failed. Username or password is incorrect.')
                 return redirect(url_for('login'))
+        else:
+            return render_template('login.html')
     else:
         return render_template('calendar.html')
 

@@ -8,3 +8,6 @@ finished database
 chenT -- 2018-05-18 14:22:19
 combined database with app.py
 
+chenT & mahiniM -- 2018-05-21 14:46:48
+Tested and debugged login system and added very barebones login.html
+
