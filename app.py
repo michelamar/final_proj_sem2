@@ -70,6 +70,10 @@ def change_password(username, password):
     db.close()
     return True
 
+#checks if user is in session
+def loggedin():
+    return 'username' in session
+
 #adds entry to database
 #returns true if entry is added
 def add_entry(username, date, numtype, data):
@@ -134,6 +138,22 @@ def login():
 def auth_login(username, password):
     return user_exists(username) and (password == get_password(username))
 
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        password_verify = request.form.get('password_verify')
+        if password == password_verify:
+            if add_user(username, password):
+                flash('Account successfully created!')
+                return redirect('login')
+            else:
+                flash('Registration error: Username is already in use.')
+        else:
+            flash('Registration error: The passwords you entered do not match.')
+    return render_template('create.html')
+
 @app.route('/home', methods = ['POST', 'GET'])
 def home():
     if 'user' not in session:
@@ -151,6 +171,13 @@ def home():
     else:
         return render_template('calendar.html')
 
+@app.route('/input', methods = ['POST', 'GET'])
+def input():
+    if 'user' in session:
+        return render_template('input.html')
+    else:
+        render_template('login.html') 
+    
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
     session.pop('user')
