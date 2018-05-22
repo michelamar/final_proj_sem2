@@ -207,7 +207,9 @@ var setup =  function(mon, year){
     var start = new Date(year, mon, 1).getDay();
     console.log(numDays(4,2018));
     var dayNum;
+    var name;
     var temp = 1;
+    var link;
     for (i = start; i < days + start; i++){
 	dayNum = document.createElementNS("http://www.w3.org/2000/svg","text");
 	dayNum.setAttribute("x",d3.select(listBoxes[i]).attr("x")-(-2));
@@ -215,11 +217,32 @@ var setup =  function(mon, year){
 	dayNum.setAttribute("font-size","20px");
 	dayNum.setAttribute("fill","black");
 	dayNum.innerHTML = temp;
+	if (mon < 9){
+	    if (temp < 10){
+		name = "0" + (mon + 1) + "0" + temp + "" + year;
+	    }
+	    else{
+		name = "0" + (mon + 1) + "" + temp + "" + year;
+	    }
+	}
+	else {
+	    if (temp < 10){
+		name = (mon + 1) + "0" + temp + "" + year;
+	    }
+	    else{
+		name = (mon + 1) + "" + temp + "" + year;
+	    }
+	}
+	listBoxes[i].setAttribute("class",name);
+	link = document.createElementNS("http://www.w3.org/2000/svg", "a");
+	link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "templates/input.html");
+	canvas.appendChild(link);
+	link.appendChild(listBoxes[i]);
 	canvas.appendChild(dayNum);
 	temp ++;
-	console.log(d3.select(listBoxes[i]).attr("y"))
+	console.log(d3.select(listBoxes[i]).attr("class"))
     }
 }
 
-drawCal(11,2018);
+drawCal(4,2018);
 
