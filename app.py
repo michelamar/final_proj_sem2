@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 import sys
 import os
-import sqlite3   #enable control of an sqlite database
+import sqlite3
+from werkzeug import secure_filename
 
 app = Flask(__name__)
 
@@ -9,6 +10,8 @@ def make_secret_key():
     return os.urandom(32)
 
 app.secret_key = make_secret_key()
+
+EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 #-------------------------------database functions-----------------------------
 f = "timber.db"
@@ -176,7 +179,29 @@ def input():
     if 'user' in session:
         return render_template('input.html')
     else:
-        render_template('login.html') 
+        render_template('login.html')
+
+def file_valid(filename):
+    return ('.' in filename) and (filename.split('.', 1)[1].lower in EXTENSIONS)
+
+pic_id = 0
+
+def get_pic_name(filename):
+    
+
+@app.route('/upload', methods = ['POST', 'GET'])
+def upload():
+    if request.method == 'POST':
+        pic = request.files['image']
+        if file_valid(pic.filename):
+            picname = secure_filename(pic)
+            pic.save(picname)
+            rename(picname)
+        else:
+            flash('Sorry, file not valid')
+
+def rename(filename):
+    
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
