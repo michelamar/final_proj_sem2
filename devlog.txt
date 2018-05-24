@@ -17,3 +17,5 @@ worked on base of html files
 marchiniM -- 2018-05-23 14:50:00
 worked on system for uploading pictures and adding them to the database
 
+marchiniM -- 2018-05-24 14:49:25
+worked to tranfer files to apache-workable format (added .wsgi and .conf files and such)
