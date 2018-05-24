@@ -8,9 +8,12 @@ finished database
 chenT -- 2018-05-18 14:22:19
 combined database with app.py
 
-chenT & mahiniM -- 2018-05-21 14:46:48
+chenT & marchiniM -- 2018-05-21 14:46:48
 Tested and debugged login system and added very barebones login.html
 
 chenT -- 2018-05-22 14:50:52
 worked on base of html files
+
+marchiniM -- 2018-05-23 14:50:00
+worked on system for uploading pictures and adding them to the database
 
