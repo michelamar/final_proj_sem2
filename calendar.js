@@ -118,19 +118,19 @@ var drawCal = function(mont,year){
 	}
     }
 
-    for (i = 0; i < listBoxes.length; i++){
-	item = listBoxes[i];
-	if (typeof window.addEventListener === 'function'){
-	    (function (item){
-		item.addEventListener("mouseover", function(){
-		    item.setAttribute("fill","gray");
-		});
-		item.addEventListener("mouseout", function(){
-		    item.setAttribute("fill","white");
-		});
-	    })(item);
-	}
-    }
+    //for (i = 0; i < listBoxes.length; i++){
+//	item = listBoxes[i];
+//	if (typeof window.addEventListener === 'function'){
+//	    (function (item){
+//		item.addEventListener("mouseover", function(){
+//		    item.setAttribute("fill","gray");
+//		});
+//		item.addEventListener("mouseout", function(){
+//		    item.setAttribute("fill","white");
+//		});
+//	    })(item);
+//	}
+  //  }
 
     //change later
     var monName = document.createElementNS("http://www.w3.org/2000/svg","text");
@@ -210,7 +210,19 @@ var setup =  function(mon, year){
     var name;
     var temp = 1;
     var link;
+    var dest;
     for (i = start; i < days + start; i++){
+	item = listBoxes[i];
+	if (typeof window.addEventListener === 'function'){
+	    (function (item){
+		item.addEventListener("mouseover", function(){
+		    item.setAttribute("fill","gray");
+		});
+		item.addEventListener("mouseout", function(){
+		    item.setAttribute("fill","white");
+		});
+	    })(item);
+	}
 	dayNum = document.createElementNS("http://www.w3.org/2000/svg","text");
 	dayNum.setAttribute("x",d3.select(listBoxes[i]).attr("x")-(-2));
 	dayNum.setAttribute("y",d3.select(listBoxes[i]).attr("y")-(-18));
@@ -235,7 +247,8 @@ var setup =  function(mon, year){
 	}
 	listBoxes[i].setAttribute("class",name);
 	link = document.createElementNS("http://www.w3.org/2000/svg", "a");
-	link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', "templates/input.html");
+	dest = "input.html?date=" + name;
+	link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dest);
 	canvas.appendChild(link);
 	link.appendChild(listBoxes[i]);
 	canvas.appendChild(dayNum);
