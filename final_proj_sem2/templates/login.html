@@ -1,0 +1,22 @@
+{% extends 'frame.html' %}
+
+{% block content %}
+
+
+<form method="POST" action="/home">
+  <label>Username
+    <input type="text" name="username" required>
+  </label>
+  <label>Password
+    <input type="password" name="password" required>
+  </label>
+  <input type="submit" value="Login"></input>
+</form>
+<form method="GET" action="/create">
+  Don't have an account?
+  <input type="submit" value="Create Account">
+</form>
+
+
+
+{% endblock %}

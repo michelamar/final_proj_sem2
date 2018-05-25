@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calendar</title>
+  </head>
+  <body {% block onload %}{% endblock %}>
+    {% set messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <h3> {{message}}</h3>
+    {% endfor %}
+
+    <div id = "content">
+      {% block content %}{% endblock %}
+    </div>
+
+</html>
