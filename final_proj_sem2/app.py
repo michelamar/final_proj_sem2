@@ -124,6 +124,20 @@ def user_exists(username):
         db.close()
         return True
 
+def get_pic_id():
+    f = "timber.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('SELECT data FROM entries WHERE type = 0')
+    results = c.fetchall()
+    if results == []:
+        db.close()
+        return 0
+    else:
+        pic_id = len(results)
+        db.close()
+        return pic_id
+
 #------------------------------------flask app--------------------------------
 @app.route('/')
 def root():
@@ -184,10 +198,11 @@ def input():
 def file_valid(filename):
     return ('.' in filename) and (filename.split('.', 1)[1].lower in EXTENSIONS)
 
-pic_id = 0
 
 def get_pic_name(filename):
-    
+    ext = filename.split('.', 1)[1]
+    name = str(get_pic_id) + '.' + ext
+    return name  
 
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():
@@ -197,11 +212,19 @@ def upload():
             picname = secure_filename(pic)
             pic.save(picname)
             rename(picname)
+            add_entry(session['user'], 
         else:
             flash('Sorry, file not valid')
 
-def rename(filename):
-    
+def rename(pic):
+    path = "static/img"
+    files = os.listdir(path)
+    base, ext = os.path.splitext(str(pic))
+    source = os.path.join("./", str(pic))
+    newfile = get_pic_name
+    dest = os.path.join("./static/img", newfile)
+    os.rename(source, dest)
+return
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
