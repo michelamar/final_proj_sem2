@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Calendar</title>
-  </head>
-  <body>
-    <svg xmlns="http://www.w3.org/2000/svg" width = "800" height = "800" id = "canvas" style = "border:1px solid black;">
-    </svg>
-    <script src = "https://d3js.org/d3.v4.min.js"></script>
-    <script type="text/javascript" src ="/static/calendar.js"></script>
-  </body>
-</html>
+{% extends 'frame.html' %}
+
+{% block content %}
+<!---------------------------navbar-------------------------------->
+<nav class="navbar navbar-default" style="background-color:lightsteelblue;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Cloud Diaries</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<!---------------------------navbar--------------------------------->
+<center>
+<svg xmlns="http://www.w3.org/2000/svg" width = "800" height = "800" id = "canvas" style = "border:1px solid black;">
+</svg>
+</center>
+<script src = "https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" src ="/static/calendar.js"></script>
+
+
+{% endblock %}

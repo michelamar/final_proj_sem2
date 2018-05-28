@@ -22,3 +22,6 @@ worked to tranfer files to apache-workable format (added .wsgi and .conf files a
 
 marchiniM -- 2018-05-25 14:48:20
 continued working on uploading pictures system, wrote a database function to get next picture name
+chenT -- 2018-05-28 16:44:48
+added styling
+

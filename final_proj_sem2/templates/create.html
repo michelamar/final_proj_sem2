@@ -1,19 +1,19 @@
 {% extends 'frame.html' %}
 
 {% block content %}
-
-<form method="POST" action="/create">
-  <label>Username:
-    <input type="text" name="username" required>
-  </label>
-  <label>Password:
-    <input type="password" name="password" required>
-  </label>
-  <label>Verify Password:
-    <input type="password" name="password_verify" required>
-  </label>
-  <input type="submit" value="Sign Up">
-</form>
-
+<center>
+  <div class="container">
+    <form method="POST" action="/create">
+      <label>Username:</label>
+      <input type="text" class="form-control" name="username" required>
+      <label>Password:</label>
+      <input type="password" class="form-control" name="password" required>
+      <label>Verify Password:</label>
+      <input type="password" class="form-control"  name="password_verify" required>
+      <br>
+      <input type="submit" value="Sign Up">
+    </form>
+  </div>
+</center>
 
 {% endblock %}
