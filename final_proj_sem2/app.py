@@ -191,18 +191,29 @@ def home():
 @app.route('/input', methods = ['POST', 'GET'])
 def input():
     if 'user' in session:
-        return render_template('input.html')
+        if request.method == 'POST':
+            text = request.form['text']
+            pic = request.form['pic']
+            add_entry('user', date, 1, text)
+        else:
+            return render_template('input.html')
     else:
         render_template('login.html')
 
 def file_valid(filename):
     return ('.' in filename) and (filename.split('.', 1)[1].lower in EXTENSIONS)
 
-
 def get_pic_name(filename):
     ext = filename.split('.', 1)[1]
     name = str(get_pic_id) + '.' + ext
     return name  
+
+@app.route('/entry', methods = ['POST', 'GET'])
+def entry():
+    if 'user' in session:
+        return render_template('entry.html')
+    else:
+        render_template('login.html')
 
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():

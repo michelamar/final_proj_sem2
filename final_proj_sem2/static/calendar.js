@@ -247,7 +247,7 @@ var setup =  function(mon, year){
 	}
 	listBoxes[i].setAttribute("class",name);
 	link = document.createElementNS("http://www.w3.org/2000/svg", "a");
-	dest = "input.html?date=" + name;
+	dest = "input?date=" + name;
 	link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dest);
 	canvas.appendChild(link);
 	link.appendChild(listBoxes[i]);
