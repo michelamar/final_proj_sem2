@@ -19,3 +19,6 @@ worked on system for uploading pictures and adding them to the database
 
 marchiniM -- 2018-05-24 14:49:25
 worked to tranfer files to apache-workable format (added .wsgi and .conf files and such)
+
+marchiniM -- 2018-05-25 14:48:20
+continued working on uploading pictures system, wrote a database function to get next picture name
