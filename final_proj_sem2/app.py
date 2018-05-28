@@ -212,7 +212,7 @@ def upload():
             picname = secure_filename(pic)
             pic.save(picname)
             rename(picname)
-            add_entry(session['user'], 
+            add_entry(session['user']), 
         else:
             flash('Sorry, file not valid')
 
@@ -224,7 +224,7 @@ def rename(pic):
     newfile = get_pic_name
     dest = os.path.join("./static/img", newfile)
     os.rename(source, dest)
-return
+    return
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
