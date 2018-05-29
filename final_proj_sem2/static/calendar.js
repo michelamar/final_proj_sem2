@@ -1,5 +1,9 @@
 var canvas = document.getElementById("canvas");
 var listBoxes = [];
+var curMonth = 4;
+var curYear = 2018;
+var tempMonth = 4;
+var tempYear = 2018;
 
 var numDays = function(mon,year){
     if (mon == 0){
@@ -85,6 +89,8 @@ var setMonth = function(mon){
 }
 
 var drawCal = function(mont,year){
+    d3.selectAll("svg > *").remove();
+    
     var cal = document.createElementNS("http://www.w3.org/2000/svg","rect");
     cal.setAttribute("fill","white");
     cal.setAttribute("stroke","black");
@@ -102,6 +108,38 @@ var drawCal = function(mont,year){
     mon.setAttribute("height",140);
     mon.setAttribute("width",600);
     canvas.appendChild(mon);
+
+    var next = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+    next.setAttribute("points", "630,120 630,180 680,150");
+    next.setAttribute("fill", "white");
+    canvas.appendChild(next);
+
+    next.addEventListener("click", function(){
+	if (tempMonth == 11){
+	    tempMonth = 0;
+	    tempYear = tempYear + 1;
+	}
+	else{
+	    tempMonth = tempMonth + 1;
+	}
+	drawCal(tempMonth,tempYear);
+    });
+
+    var back = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+    back.setAttribute("points", "120,150 170,120 170,180");
+    back.setAttribute("fill", "white");
+    canvas.appendChild(back);
+
+    back.addEventListener("click", function(){
+	if (tempMonth == 0){
+	    tempMonth = 11;
+	    tempYear = tempYear - 1;
+	}
+	else{
+	    tempMonth = tempMonth - 1;
+	}
+	drawCal(tempMonth,tempYear);
+    });
 
     var box
     for (i = 0; i < 5; i++){
@@ -134,7 +172,7 @@ var drawCal = function(mont,year){
 
     //change later
     var monName = document.createElementNS("http://www.w3.org/2000/svg","text");
-    monName.setAttribute("x",300);
+    monName.setAttribute("x",200);
     monName.setAttribute("y",170);
     monName.setAttribute("font-size","80px");
     monName.setAttribute("fill","white");
@@ -257,5 +295,5 @@ var setup =  function(mon, year){
     }
 }
 
-drawCal(4,2018);
+drawCal(curMonth,curYear);
 
