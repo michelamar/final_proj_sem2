@@ -236,6 +236,13 @@ def rename(pic):
     dest = os.path.join("./static/img", newfile)
     os.rename(source, dest)
     return
+
+@app.route('/profile', methods = ['POST','GET'])
+def profile():
+    if 'user' in session:
+        return render_template('/profile.html')
+    else:
+        render_template('/login.html')
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
