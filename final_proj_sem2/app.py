@@ -188,17 +188,23 @@ def home():
     else:
         return render_template('calendar.html')
 
+date = 0
+
 @app.route('/input', methods = ['POST', 'GET'])
 def input():
     if 'user' in session:
-        if request.method == 'POST':
-            text = request.form['text']
-            pic = request.form['pic']
-            add_entry('user', date, 1, text)
-        else:
-            return render_template('input.html')
+        if request.method == 'GET':
+            global date
+            date = request.args['date']
+           # print date
+        return render_template('input.html')
     else:
-        render_template('login.html')
+        return render_template('login.html')
+
+@app.route('/input_backend', methods = ['POST', 'GET'])
+def input_backend():
+    print date
+    return redirect(url_for('entry'))
 
 def file_valid(filename):
     return ('.' in filename) and (filename.split('.', 1)[1].lower in EXTENSIONS)
