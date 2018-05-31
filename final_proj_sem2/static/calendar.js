@@ -90,6 +90,7 @@ var setMonth = function(mon){
 
 var drawCal = function(mont,year){
     d3.selectAll("svg > *").remove();
+    listBoxes = [];
     
     var cal = document.createElementNS("http://www.w3.org/2000/svg","rect");
     cal.setAttribute("fill","white");
@@ -141,15 +142,20 @@ var drawCal = function(mont,year){
 	drawCal(tempMonth,tempYear);
     });
 
-    var box
-    for (i = 0; i < 5; i++){
+    var days = numDays(mont, year);
+    var start = new Date(year, mont, 1).getDay();
+
+    var rows = Math.ceil((days - (7 - start))/7) + 1;
+    
+    var box;
+    for (i = 0; i < rows; i++){
 	for (n = 0; n <7; n++){
 	    box = document .createElementNS("http://www.w3.org/2000/svg","rect");
 	    box.setAttribute("fill","white");
 	    box.setAttribute("stroke","black");
 	    box.setAttribute("x",100 + (n*(600/7)));
-	    box.setAttribute("y", 240 + (i*(460/5)));
-	    box.setAttribute("height",460/5);
+	    box.setAttribute("y", 240 + (i*(460/rows)));
+	    box.setAttribute("height",460/rows);
 	    box.setAttribute("width",600/7);
 	    canvas.appendChild(box);
 	    listBoxes.push(box);
@@ -172,7 +178,7 @@ var drawCal = function(mont,year){
 
     //change later
     var monName = document.createElementNS("http://www.w3.org/2000/svg","text");
-    monName.setAttribute("x",200);
+    monName.setAttribute("x",180);
     monName.setAttribute("y",170);
     monName.setAttribute("font-size","80px");
     monName.setAttribute("fill","white");
@@ -243,7 +249,7 @@ var drawCal = function(mont,year){
 var setup =  function(mon, year){
     var days = numDays(mon, year);
     var start = new Date(year, mon, 1).getDay();
-    console.log(numDays(4,2018));
+    //console.log(numDays(4,2018));
     var dayNum;
     var name;
     var temp = 1;
@@ -291,7 +297,7 @@ var setup =  function(mon, year){
 	link.appendChild(listBoxes[i]);
 	canvas.appendChild(dayNum);
 	temp ++;
-	console.log(d3.select(listBoxes[i]).attr("class"))
+	//console.log(d3.select(listBoxes[i]).attr("class"))
     }
 }
 
