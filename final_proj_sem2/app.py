@@ -97,11 +97,11 @@ def add_entry(username, date, numtype, data):
     return False
 
 #returns a list of the entries under a username
-def get_entry(username, date):
+def get_entry(username, date, data_type):
     f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('SELECT type, data FROM entries WHERE username="%s" AND date="%s";' %(username, date))
+    c.execute('SELECT data FROM entries WHERE username="%s" AND date="%s" AND type="%s";' %(username, date, data_type))
     results = c.fetchall()
     if results == []:
         db.close()
@@ -201,37 +201,13 @@ def input():
     else:
         return render_template('login.html')
 
-@app.route('/input_backend', methods = ['POST', 'GET'])
-def input_backend():
-    print date
-    return redirect(url_for('entry'))
-
 def file_valid(filename):
     return ('.' in filename) and (filename.split('.', 1)[1].lower in EXTENSIONS)
 
 def get_pic_name(filename):
     ext = filename.split('.', 1)[1]
     name = str(get_pic_id) + '.' + ext
-    return name  
-
-@app.route('/entry', methods = ['POST', 'GET'])
-def entry():
-    if 'user' in session:
-        return render_template('entry.html')
-    else:
-        render_template('login.html')
-
-@app.route('/upload', methods = ['POST', 'GET'])
-def upload():
-    if request.method == 'POST':
-        pic = request.files['image']
-        if file_valid(pic.filename):
-            picname = secure_filename(pic)
-            pic.save(picname)
-            rename(picname)
-            add_entry(session['user']), 
-        else:
-            flash('Sorry, file not valid')
+    return name
 
 def rename(pic):
     path = "static/img"
@@ -242,6 +218,40 @@ def rename(pic):
     dest = os.path.join("./static/img", newfile)
     os.rename(source, dest)
     return
+
+@app.route('/upload', methods = ['POST', 'GET'])
+def upload():
+    if request.method == 'POST':
+        pic = request.files['pic']
+        if file_valid(pic.filename):
+            picname = secure_filename(pic)
+            pic.save(picname)
+            rename(picname)
+            add_entry(session['user'], date, 0, picname), 
+        else:
+            flash('Sorry, file not valid')
+    return redirect(url_for('entry'))
+
+@app.route('/input_backend', methods = ['POST', 'GET'])
+def input_backend():
+    print "in backend"
+    if request.method == 'POST':
+        text = request.form('text')
+        print "text = " + text
+        add_entry(session['user'], date, 1, text)
+    return redirect(url_for('entry'))
+ 
+
+@app.route('/entry', methods = ['POST', 'GET'])
+def entry():
+    if 'user' in session:
+        pics = get_entry(session['user'], date, 0)
+        posts = get_entry(session['user'], date, 1)
+        print "posts = " + str(posts)
+        return render_template('entry.html', pics = pics, posts = posts, date = date)
+    else:
+        render_template('login.html')
+
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
