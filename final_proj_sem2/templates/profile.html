@@ -1,6 +1,7 @@
 {% extends 'frame.html' %}
 
 {% block content %}
+
 <!---------------------------navbar-------------------------------->
 <nav class="navbar navbar-default" style="background-color:lightsteelblue;">
   <div class="container-fluid">
@@ -9,25 +10,18 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/home">Home</a></li>
+      <li><a href="/profile">Profile</a><li>
       <li><a href="/logout">Logout</a></li>
     </ul>
   </div>
 </nav>
 <!---------------------------navbar--------------------------------->
 
-<form action="/upload" method="post">
-  <div class="form-group">
-    <label for="FormControlFile1">Insert Pictures:</label>
-    <input type="file" class="form-control-file" id="pic">
-  </div>
-  <input type="submit" value="Submit">
-</form>
-<form action="/input_backend" method="post">
-  <div class="form-group">
-    <label for="FormControlTextarea1">Insert Text:</label>
-    <textarea class="form-control" id="text" rows="3"></textarea>
-  </div>
-  <input type="submit" value="Submit">
-</form>
+<center><h1>{{name}}</h1></center>
+
+<!----------------------------d3 html------------------------------->
+<svg height="750" width="750" id="svg" xlmns="http://www.w3.org/2000/svg">
+</svg>
+<!----------------------------d3 html------------------------------->
 
 {% endblock %}

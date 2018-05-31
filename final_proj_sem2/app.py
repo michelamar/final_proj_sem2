@@ -252,6 +252,25 @@ def entry():
     else:
         render_template('login.html')
 
+<<<<<<< HEAD
+=======
+def rename(pic):
+    path = "static/img"
+    files = os.listdir(path)
+    base, ext = os.path.splitext(str(pic))
+    source = os.path.join("./", str(pic))
+    newfile = get_pic_name
+    dest = os.path.join("./static/img", newfile)
+    os.rename(source, dest)
+    return
+
+@app.route('/profile', methods = ['POST','GET'])
+def profile():
+    if 'user' in session:
+        return render_template('/profile.html')
+    else:
+        render_template('/login.html')
+>>>>>>> 45f716d053adbc2190126a2ec58990f44e5c4798
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
