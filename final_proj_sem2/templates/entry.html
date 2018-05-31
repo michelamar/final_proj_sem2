@@ -14,3 +14,23 @@
   </div>
 </nav>
 <!---------------------------navbar--------------------------------->
+<div id="pictures">
+  <center>
+    {% for pic in {{pics}} %}
+    {{pic}}
+    {% endblock %}
+  </center>
+</div>
+
+<div id="posts">
+  <center>
+    {% for post in {{posts}} %}
+    <p>{{post}}</p>
+    <br>
+    {% endblock %}
+  </center>
+</div>
+
+<form action="/input">
+  <button type="button" class="btn btn-secondary btn-lg btn-block">Add More</button>
+</form>
