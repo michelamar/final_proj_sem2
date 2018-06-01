@@ -25,3 +25,6 @@ continued working on uploading pictures system, wrote a database function to get
 chenT -- 2018-05-28 16:44:48
 added styling
 
+marchiniM -- 2018-06-01 14:32:36
+fixed input backend
+

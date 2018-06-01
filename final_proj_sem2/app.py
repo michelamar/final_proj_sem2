@@ -83,18 +83,11 @@ def add_entry(username, date, numtype, data):
     f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    if empty_db():
-        c.execute('INSERT INTO entries VALUES("%s", "%s", "%s", "%s");' %(username, date, numtype, data))
-        db.commit()
-        db.close()
-        return True
-    if get_entry(username, date) is None:
-        c.execute('INSERT INTO entries VALUES("%s", "%s", "%s", "%s");' %(username, date, numtype, data))
-        db.commit()
-        db.close()
-        return True
+    c.execute('INSERT INTO entries VALUES("%s", "%s", "%s", "%s");' %(username, date, numtype, data))
+    db.commit()
     db.close()
-    return False
+    return True
+
 
 #returns a list of the entries under a username
 def get_entry(username, date, data_type):
@@ -236,7 +229,7 @@ def upload():
 def input_backend():
     print "in backend"
     if request.method == 'POST':
-        text = request.form('text')
+        text = request.form['textpost']
         print "text = " + text
         add_entry(session['user'], date, 1, text)
     return redirect(url_for('entry'))
@@ -252,17 +245,6 @@ def entry():
     else:
         render_template('login.html')
 
-<<<<<<< HEAD
-=======
-def rename(pic):
-    path = "static/img"
-    files = os.listdir(path)
-    base, ext = os.path.splitext(str(pic))
-    source = os.path.join("./", str(pic))
-    newfile = get_pic_name
-    dest = os.path.join("./static/img", newfile)
-    os.rename(source, dest)
-    return
 
 @app.route('/profile', methods = ['POST','GET'])
 def profile():
@@ -270,7 +252,7 @@ def profile():
         return render_template('/profile.html')
     else:
         render_template('/login.html')
->>>>>>> 45f716d053adbc2190126a2ec58990f44e5c4798
+
     
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():

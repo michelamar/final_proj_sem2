@@ -18,15 +18,14 @@
 <form action="/upload" method="post">
   <div class="form-group">
     <label for="FormControlFile1">Insert Pictures:</label>
-    <input type="file" class="form-control-file" id="pic">
+    <input type="file" class="form-control-file" name="pic">
   </div>
   <input type="submit" value="Submit">
 </form>
 <form action="/input_backend" method="post">
   <div class="form-group">
-    <label for="FormControlTextarea1">Insert Text:</label>
-    <textarea class="form-control" id="text" rows="3"></textarea>
-  </div>
+    Insert text: <br>
+    <input type="text" class="form-control" name="textpost"></div>
   <input type="submit" value="Submit">
 </form>
 
