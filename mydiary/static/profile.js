@@ -58,3 +58,13 @@ var draw = function(){
     bar6.setAttribute("height", 40*height6);
     bar6.setAttribute("width", 100);
     canvas.appendChild(bar6);
+
+    var bar7 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+    bar7.setAttribute("fill", "lightsteelblue");
+    bar7.setAttribute("x", 600);
+    bar7.setAttribute("y", (400-(40*height6)));
+    bar7.setAttribute("height", 40*height6);
+    bar7.setAttribute("width", 100);
+    canvas.appendChild(bar7);
+
+    
