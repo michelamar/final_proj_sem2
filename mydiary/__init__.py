@@ -109,8 +109,6 @@ def entryexists(username, date):
         return False
     else:
         return True
-
-print entryexists("bob", '060118')
     
 #returns true if user is in database
 def user_exists(username):
@@ -195,11 +193,14 @@ date = 0
 @app.route('/input', methods = ['POST', 'GET'])
 def input():
     if 'user' in session:
-        if request.method == 'GET':
-            global date
-            date = request.args['date']
-           # print date
-        return render_template('input.html')
+        if entryexists(session['user'], request.args['date']):
+            return redirect('/entry')
+        else:
+            if request.method == 'GET':
+                global date
+                date = request.args['date']
+                # print date
+            return render_template('input.html')
     else:
         return render_template('login.html')
 
@@ -247,8 +248,12 @@ def input_backend():
 @app.route('/entry', methods = ['POST', 'GET'])
 def entry():
     if 'user' in session:
-        pics = get_entry(session['user'], date, 0)
-        posts = get_entry(session['user'], date, 1)
+        pics = []
+        posts = []
+        if get_entry(session['user'], date, 0) != None:
+            pics = get_entry(session['user'], date, 0)
+        if get_entry(session['user'], date, 1) != None:
+            posts = get_entry(session['user'], date, 1)
         print "posts = " + str(posts)
         return render_template('entry.html', pics = pics, posts = posts, date = date)
     else:
