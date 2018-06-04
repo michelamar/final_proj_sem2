@@ -1,14 +1,13 @@
 var canvas = document.getElementById("canvas");
 var listBoxes = [];
-var curMonth = 4;
-var curYear = 2018;
-var tempMonth = 4;
-var tempYear = 2018;
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
-
+var curMonth = today.getMonth();
+var tempMonth = today.getMonth();
+var curYear = yyyy;
+var tempYear = yyyy;
 if(dd<10) {
     dd = '0'+dd
 } 
