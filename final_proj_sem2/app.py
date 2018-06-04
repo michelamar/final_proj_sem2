@@ -103,6 +103,15 @@ def get_entry(username, date, data_type):
         db.close()
         return results
 
+#returns true if there is an entry for a specific date
+def entryexists(username, date):
+    if get_entry(username, date, 0) == None and get_entry(username, date, 1) == None:
+        return False
+    else:
+        return True
+
+print entryexists("bob", '060118')
+    
 #returns true if user is in database
 def user_exists(username):
     f = "timber.db"
