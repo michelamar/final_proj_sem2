@@ -4,6 +4,20 @@ var curMonth = 4;
 var curYear = 2018;
 var tempMonth = 4;
 var tempYear = 2018;
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+}
+
+var dateString = mm+dd+yyyy;
 
 var numDays = function(mon,year){
     if (mon == 0){
@@ -102,7 +116,7 @@ var drawCal = function(mont,year){
     canvas.appendChild(cal);
 
     var mon = document.createElementNS("http://www.w3.org/2000/svg","rect");
-    mon.setAttribute("fill","red");
+    mon.setAttribute("fill","lightsteelblue");
     mon.setAttribute("stroke","black");
     mon.setAttribute("x",100);
     mon.setAttribute("y",100);
@@ -257,16 +271,6 @@ var setup =  function(mon, year){
     var dest;
     for (i = start; i < days + start; i++){
 	item = listBoxes[i];
-	if (typeof window.addEventListener === 'function'){
-	    (function (item){
-		item.addEventListener("mouseover", function(){
-		    item.setAttribute("fill","gray");
-		});
-		item.addEventListener("mouseout", function(){
-		    item.setAttribute("fill","white");
-		});
-	    })(item);
-	}
 	dayNum = document.createElementNS("http://www.w3.org/2000/svg","text");
 	dayNum.setAttribute("x",d3.select(listBoxes[i]).attr("x")-(-2));
 	dayNum.setAttribute("y",d3.select(listBoxes[i]).attr("y")-(-18));
@@ -290,6 +294,34 @@ var setup =  function(mon, year){
 	    }
 	}
 	listBoxes[i].setAttribute("class",name);
+	if (name == dateString){
+	    listBoxes[i].setAttribute("fill","lightsteelblue");
+	    //canvas.appendChild(listBoxes[i]);
+	    if (typeof window.addEventListener === 'function'){
+		(function (item){
+		    item.addEventListener("mouseover", function(){
+			item.setAttribute("fill","gray");
+		    });
+		    item.addEventListener("mouseout", function(){
+			item.setAttribute("fill","lightsteelblue");	
+		    });
+		})(item);
+	    }
+	}
+
+	else{
+	    if (typeof window.addEventListener === 'function'){
+		(function (item){
+		    item.addEventListener("mouseover", function(){
+			item.setAttribute("fill","gray");
+		    });
+		    item.addEventListener("mouseout", function(){
+			item.setAttribute("fill","white");
+			
+		    });
+		})(item);
+	    }
+	}
 	link = document.createElementNS("http://www.w3.org/2000/svg", "a");
 	dest = "input?date=" + name;
 	link.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dest);
