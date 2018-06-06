@@ -1,4 +1,10 @@
 var canvas = document.getElementById("canvas");
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+
 
 var height1 = 3;
 var height2 = 4;
@@ -88,7 +94,24 @@ var draw = function(){
 	label.innerHTML = i + 1;
 	canvas.appendChild(label);
     }
+    var prevDay;
+    var datelabel;
+    for( i = 0 ; i < 7 ; i ++ ){
+	prevDay = new Date(today);
+	prevDay.setDate(today.getDate()-(6-i));
+	mm = prevDay.getMonth() + 1;
+	dd = prevDay.getDate();
+	yyyy = prevDay.getFullYear();
+	datelabel = document.createElementNS("http://www.w3.org/2000/svg","text");
+	datelabel.setAttribute("x", (100*i)+2);
+	datelabel.setAttribute("y", 380);
+	datelabel.setAttribute("font-size", "15px");
+	datelabel.setAttribute("fill", "gray");
+	datelabel.innerHTML = mm + "/" +  dd + "/" + yyyy;
+	canvas.appendChild(datelabel);
 
+
+    }
     
     
 }
