@@ -14,7 +14,7 @@ app.secret_key = make_secret_key()
 EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 #-------------------------------database functions-----------------------------
-f = "/var/www/mydiary/mydiary/timber.db"
+f = "timber.db"
 db = sqlite3.connect(f)
 c = db.cursor()
 c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT NOT NULL);')
@@ -24,7 +24,7 @@ db.close()
 #adds user to user database
 #returns true if successful
 def add_user(username, password):
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     if empty_db():
@@ -51,7 +51,7 @@ def empty_db():
 
 #retrieves password with given username
 def get_password(username):
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('SELECT password FROM users WHERE username="%s";' %(username))
@@ -65,7 +65,7 @@ def get_password(username):
 
 #returns true if password is changed
 def change_password(username, password):
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('UPDATE users SET password="%s" WHERE username="%s";' %(password, username))
@@ -80,7 +80,7 @@ def loggedin():
 #adds entry to database
 #returns true if entry is added
 def add_entry(username, date, numtype, data):
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('INSERT INTO entries VALUES("%s", "%s", "%s", "%s");' %(username, date, numtype, data))
@@ -91,7 +91,7 @@ def add_entry(username, date, numtype, data):
 
 #returns a list of the entries under a username
 def get_entry(username, date, data_type):
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('SELECT data FROM entries WHERE username="%s" AND date="%s" AND type="%s";' %(username, date, data_type))
@@ -112,7 +112,7 @@ def entryexists(username, date):
     
 #returns true if user is in database
 def user_exists(username):
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('SELECT username FROM users WHERE username="%s"' %(username))
@@ -125,7 +125,7 @@ def user_exists(username):
         return True
 
 def get_pic_id():
-    f = "/var/www/mydiary/mydiary/timber.db"
+    f = "timber.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('SELECT data FROM entries WHERE type = 0')
