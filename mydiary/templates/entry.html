@@ -1,5 +1,5 @@
 {% extends 'frame.html' %}
-
+{% block content %}
 <!---------------------------navbar-------------------------------->
 <nav class="navbar navbar-default" style="background-color:lightsteelblue;">
   <div class="container-fluid">
@@ -14,20 +14,21 @@
   </div>
 </nav>
 <!---------------------------navbar--------------------------------->
+
 <div id="container">
-  <!--<div id="pictures">
+  <div id="pictures">
     <center>
       {% for pic in pics %}
       <img src={{pic}}>
       <img src="baby.jpg">
       {% endfor %}
     </center>
-  </div>-->
+  </div>
 
   <div id="posts">
     <center>
       {% for post in posts %}
-      <p>{{post}}</p>
+      <p>{{post[0]}}</p>
       <br>
       {% endfor %}
     </center>
@@ -37,3 +38,5 @@
     <button type="button" class="btn btn-secondary btn-lg btn-block">Add More</button>
   </form>
 </div>
+
+{% endblock %}
