@@ -3,7 +3,7 @@ var canvas = document.getElementById("canvas");
 var height1 = 3;
 var height2 = 4;
 var height3 = 1;
-var height4 = 5;
+var height4 = 9;
 var height5 = 6;
 var height6 = 2;
 var height7 = 4;
@@ -67,6 +67,16 @@ var draw = function(){
     bar7.setAttribute("width", 100);
     canvas.appendChild(bar7);
 
+    var axes;
+    for(i = 0; i < 9; i ++){
+	axes = document.createElementNS('http://www.w3.org/2000/svg','line');
+	axes.setAttribute('x1', '0');
+	axes.setAttribute('y1', 360 - (40 * (i + 1)) );
+	axes.setAttribute('x1', '700');
+	axes.setAttribute('y2', 360 - (40 * (i + 1)) );
+	axes.setAttribute('stroke', 'white');
+	canvas.appendChild(axes);
+    }
     
 }
 
