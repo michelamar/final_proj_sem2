@@ -31,3 +31,6 @@ fixed input backend
 chenT -- 2018-06-04 14:50:46
 worked on python file
 
+marchiniM -- 2018-06-06 16:53:33
+Fixed entry to display things (albiet not pretty things) and add more button now redirects to input.
+

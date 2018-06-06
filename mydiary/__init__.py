@@ -194,12 +194,15 @@ date = 0
 def input():
     if 'user' in session:
         if request.method == 'GET':
-                global date
-                date = request.args['date']
-        if entryexists(session['user'], request.args['date']):
-            return redirect('/entry')
+            global date
+            date = request.args['date']
+            if entryexists(session['user'], request.args['date']):
+                return redirect('/entry')
+            else:
+                return render_template('input.html')
         else:
-                # print date
+            global date
+            date = request.form['date']
             return render_template('input.html')
     else:
         return render_template('login.html')
@@ -224,8 +227,10 @@ def rename(pic):
 
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():
+    print "pizza"
     if request.method == 'POST':
         pic = request.files['pic']
+        print str(pic)
         if file_valid(pic.filename):
             picname = secure_filename(pic)
             pic.save(picname)
@@ -256,8 +261,12 @@ def entry():
         if not get_entry(session['user'], date, 1) == None:
             print "pizza"
             posts = get_entry(session['user'], date, 1)
-        print "posts = " + str(posts)
-        return render_template('entry.html', pics = pics, posts = posts, date = date)
+        for index in range(len(pics)):
+                pics[index] = "/static/img/" + pics[index][0]
+                print pics[index]
+        print "pics = " + str(pics)
+        input_dest = "/input?date=" + date
+        return render_template('entry.html', pics = pics, posts = posts, date = date, input_dest = input_dest)
     else:
         render_template('login.html')
 
