@@ -11,7 +11,7 @@ def make_secret_key():
 
 app.secret_key = make_secret_key()
 
-EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 
 #-------------------------------database functions-----------------------------
 f = "timber.db"
@@ -208,33 +208,42 @@ def input():
         return render_template('login.html')
 
 def file_valid(filename):
-    return ('.' in filename) and (filename.split('.', 1)[1].lower in EXTENSIONS)
+    print "filename = " + filename
+    print "extention=" + filename.split('.', 1)[1]
+    print EXTENSIONS
+    print "what are you = " + str(filename.split('.', 1)[1])
+    return (str(filename.split('.', 1)[1]) in EXTENSIONS)
 
 def get_pic_name(filename):
+    print "filename in get pic name = " + filename
     ext = filename.split('.', 1)[1]
-    name = str(get_pic_id) + '.' + ext
+    name = str(get_pic_id()) + '.' + ext
+    print "name = " + name
     return name
 
 def rename(pic):
+    print "pic in rename = " + pic
     path = "static/img"
     files = os.listdir(path)
     base, ext = os.path.splitext(str(pic))
     source = os.path.join("./", str(pic))
-    newfile = get_pic_name
+    print "get pic name = " + get_pic_name(pic)
+    newfile = get_pic_name(pic)
+    print "newfile= " + newfile
     dest = os.path.join("./static/img", newfile)
     os.rename(source, dest)
-    return
+    return newfile
 
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():
-    print "pizza"
     if request.method == 'POST':
         pic = request.files['pic']
-        print str(pic)
+        print "pic = " + str(pic)
+        print "initial file_valid= " + str(file_valid(pic.filename))
         if file_valid(pic.filename):
-            picname = secure_filename(pic)
+            picname = secure_filename(pic.filename)
             pic.save(picname)
-            rename(picname)
+            picname = rename(picname)
             add_entry(session['user'], date, 0, picname), 
         else:
             flash('Sorry, file not valid')
