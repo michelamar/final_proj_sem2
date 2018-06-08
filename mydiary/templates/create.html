@@ -2,17 +2,22 @@
 
 {% block content %}
 <center>
-  <div class="container">
-    <form method="POST" action="/create">
-      <label>Username:</label>
-      <input type="text" class="form-control" name="username" required>
-      <label>Password:</label>
-      <input type="password" class="form-control" name="password" required>
-      <label>Verify Password:</label>
-      <input type="password" class="form-control"  name="password_verify" required>
+  <br><br><h1>Create an Account</h1><br><br>
+  <div id="login">
+    <div class="container">
       <br>
-      <input type="submit" value="Sign Up">
-    </form>
+      <form method="POST" action="/create">
+	<label>Username:</label>
+	<input type="text" class="form-control" name="username" required>
+	<label>Password:</label>
+	<input type="password" class="form-control" name="password" required>
+	<label>Verify Password:</label>
+	<input type="password" class="form-control"  name="password_verify" required>
+	<br>
+	<button class="btn btn-info" type="submit" value="Sign Up">Sign Up</button>
+      </form>
+      <br>
+    </div>
   </div>
 </center>
 

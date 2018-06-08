@@ -3,9 +3,10 @@
 {% block content %}
 
 <center>
-  <br><br><br><br><br><br><br>
+  <br><br><h1>Cloud Diaries</h1><br><br><br>
   <div id="login">
     <div class="container">
+      <br>
       <form method="POST" action="/home">
 	<div class="form-group">
 	  <label> Username </label>
@@ -15,13 +16,13 @@
 	  <label> Password</label>
 	  <input class="form-control" type="password" name="password" required>
 	</div>
-	<input type="submit" value="Login"></input>
+	<button class="btn btn-info" type="submit" value="Login">Login</button>
       </form>
       <br>
       <form method="GET" action="/create">
 	Don't have an account?
 	<div class="form-group">
-	  <input type="submit" value="Create Account">
+	  <button class="btn btn-info" type="submit" value="Create Account">Create Account</button>
 	</div>
       </form>
     </div>
