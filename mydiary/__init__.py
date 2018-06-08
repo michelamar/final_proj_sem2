@@ -3,6 +3,7 @@ import sys
 import os
 import sqlite3
 from werkzeug import secure_filename
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -283,11 +284,22 @@ def entry():
 @app.route('/profile', methods = ['POST','GET'])
 def profile():
     if 'user' in session:
-        return render_template('/profile.html')
+        num_posts = []
+        for date in get_dates():
+            posts = len(get_entry(session['user'], date, 1))
+            pics = len(get_entry(session['user'], date, 0))
+            num_posts.append(pics + posts)
+        return render_template('profile.html', num_posts = num_posts)
     else:
-        render_template('/login.html')
+        render_template('login.html')
 
-    
+def get_dates():
+    dates = [0, 0, 0, 0, 0, 0, date]
+    for index in range(1, 6):
+        day_ago = datetime.strftime(datetime.now() - timedelta(index), '%m%d%Y')
+        dates[6 - index] = day_ago
+    return dates
+        
 @app.route('/logout', methods = ['POST', 'GET'])
 def logout():
     session.pop('user')

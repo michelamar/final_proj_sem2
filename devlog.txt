@@ -37,3 +37,6 @@ Fixed entry to display things (albiet not pretty things) and add more button now
 marchiniM -- 2018-06-08 01:10:01
 upload and rename functions for backend of image uploads
 
+marchiniM -- 2018-06-08 14:42:01
+passing number of posts for past 6 days to html
+
