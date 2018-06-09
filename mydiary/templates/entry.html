@@ -14,29 +14,32 @@
   </div>
 </nav>
 <!---------------------------navbar--------------------------------->
+<center>
+  <div id="entry">
+    <div id="container">
+      <div id="pictures">
+	<center>
+	  {% for pic in pics %}
+	  <img src= {{pic}}>
+	  {% endfor %}
+	</center>
+      </div>
 
-<div id="container">
-  <div id="pictures">
-    <center>
-      {% for pic in pics %}
-      <img src= {{pic}}>
-      {% endfor %}
-    </center>
+      <div id="posts">
+	<center>
+	  {% for post in posts %}
+	  <p>{{post[0]}}</p>
+	  <br>
+	  {% endfor %}
+	</center>
+      </div>
+
+      <form action="/input" method="post">
+	<input type="text" name="date" value={{date}} readonly>
+	<input type="submit" value="Add More">
+      </form>
+    </div>
   </div>
-
-  <div id="posts">
-    <center>
-      {% for post in posts %}
-      <p>{{post[0]}}</p>
-      <br>
-      {% endfor %}
-    </center>
-  </div>
-
-  <form action="/input" method="post">
-    <input type="text" name="date" value={{date}} readonly>
-    <input type="submit" value="Add More">
-  </form>
-</div>
+</center>
 
 {% endblock %}

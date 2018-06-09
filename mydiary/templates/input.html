@@ -9,27 +9,30 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/home">Home</a></li>
+      <li><a href="/profile">Profile</a></li>
       <li><a href="/logout">Logout</a></li>
     </ul>
   </div>
 </nav>
+<br><br>
 <!---------------------------navbar--------------------------------->
 
+<div id="input" class="container">
   <div class="form-group">
     <form method="POST" action="/upload" enctype="multipart/form-data">
       <label for="file-upload" class="custon-file-upload button">
 	Choose File
       </label>
       <input id="file-upload" type="file" name="pic" accept="image/*" required>
-      <input class="button" type="submit" value="Upload Image">
+      <button class="btn btn-info" type="submit" value="Upload Image">Upload Image</button>
     </form>
   </div>
 
 <form action="/input_backend" method="post">
   <div class="form-group">
-    Insert text: <br>
+    <b>Insert text:</b> <br>
     <input type="text" class="form-control" name="textpost"></div>
-  <input type="submit" value="Submit">
+  <button class="btn btn-info" type="submit" value="Submit">Submit</button>
 </form>
 
 {% endblock %}

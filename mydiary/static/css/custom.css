@@ -1,7 +1,28 @@
 #login{
-    border: 2px solid #008080;
-    background-color: lightsteelblue;
+    border: 2px solid slategrey;
+    background-color: whitesmoke;
+    width: 700px;
+    height: 300px;
 }
-#container{
-    background-color: lightsteelblue;
+
+body{
+    background-color: white;
+}
+
+#input{
+    border: 1px solid lightsteelblue;
+    text-align: center;
+    width: 500px;
+    height: 300px;
+}
+
+#entry{
+    background: "dairy.GIF";
+}
+
+#posts{
+    border: 1px solid lightsteelblue;
+    border-radius: 5px;
+    width: 700px;
+    heigh: 200px:
 }

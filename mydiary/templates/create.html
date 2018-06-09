@@ -3,21 +3,19 @@
 {% block content %}
 <center>
   <br><br><h1>Create an Account</h1><br><br>
-  <div id="login">
-    <div class="container">
+  <div id="login" class="container">
+    <br>
+    <form method="POST" action="/create">
+      <label>Username:</label>
+      <input type="text" class="form-control" name="username" required>
+      <label>Password:</label>
+      <input type="password" class="form-control" name="password" required>
+      <label>Verify Password:</label>
+      <input type="password" class="form-control"  name="password_verify" required>
       <br>
-      <form method="POST" action="/create">
-	<label>Username:</label>
-	<input type="text" class="form-control" name="username" required>
-	<label>Password:</label>
-	<input type="password" class="form-control" name="password" required>
-	<label>Verify Password:</label>
-	<input type="password" class="form-control"  name="password_verify" required>
-	<br>
-	<button class="btn btn-info" type="submit" value="Sign Up">Sign Up</button>
-      </form>
-      <br>
-    </div>
+      <button class="btn btn-info" type="submit" value="Sign Up">Sign Up</button>
+    </form>
+    <br>
   </div>
 </center>
 
