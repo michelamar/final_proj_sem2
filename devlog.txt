@@ -40,3 +40,6 @@ upload and rename functions for backend of image uploads
 marchiniM -- 2018-06-08 14:42:01
 passing number of posts for past 6 days to html
 
+chenT -- 2018-06-09 01:27:14
+worked on css and bootstrap
+
