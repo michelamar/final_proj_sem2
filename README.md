@@ -1,4 +1,12 @@
-# final_proj_sem2
-SoftDev second semester final project
+# MyDiary
+mydiary.stuycs.org
 
-Deployment test: http://206.189.225.36/
+# What is it?
+MyDiary is a cloud-based diary system that allows users to add entries and pictures about their days that they can look at and update.
+
+# How do I use it?
+Go to mydiary.stuycs.org and create an account or sign in. For testing purposes you can use:
+        username: dw
+        password: pw
+        
+ENJOY!
