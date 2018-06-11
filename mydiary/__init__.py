@@ -286,8 +286,12 @@ def profile():
     if 'user' in session:
         num_posts = []
         for date in get_dates():
-            posts = len(get_entry(session['user'], date, 1))
-            pics = len(get_entry(session['user'], date, 0))
+            pics = 0
+            posts = 0
+            if get_entry(session['user'], date, 1) != None:
+                posts = len(get_entry(session['user'], date, 1))
+            if get_entry(session['user'], date, 0) != None:
+                pics = len(get_entry(session['user'], date, 0))
             num_posts.append(pics + posts)
         return render_template('profile.html', num_posts = num_posts)
     else:

@@ -46,3 +46,6 @@ worked on css and bootstrap
 chenT -- 2018-06-11 00:02:11
 added finishing touches on css and added a test acct
 
+marchiniM -- 2018-06-11 18:18:03
+fixed error on profile
+
