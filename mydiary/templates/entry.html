@@ -17,27 +17,34 @@
 <center>
   <div id="entry">
     <div id="container">
+
+      <h1>{{date}}</h1>
+      
       <div id="pictures">
 	<center>
 	  {% for pic in pics %}
 	  <img src= {{pic}}>
 	  {% endfor %}
 	</center>
-      </div>
+      </div><br><br>
 
-      <div id="posts">
+      <div class="well well-sm" id="posts">
 	<center>
 	  {% for post in posts %}
 	  <p>{{post[0]}}</p>
 	  <br>
 	  {% endfor %}
 	</center>
-      </div>
+      </div><br><br>
+
+      <h2>Add more pictures and text!</h2>
 
       <form action="/input" method="post">
 	<input type="text" name="date" value={{date}} readonly>
 	<input type="submit" value="Add More">
       </form>
+
+      <br><br>
     </div>
   </div>
 </center>

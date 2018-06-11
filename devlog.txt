@@ -43,3 +43,6 @@ passing number of posts for past 6 days to html
 chenT -- 2018-06-09 01:27:14
 worked on css and bootstrap
 
+chenT -- 2018-06-11 00:02:11
+added finishing touches on css and added a test acct
+

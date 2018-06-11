@@ -23,6 +23,19 @@ body{
 #posts{
     border: 1px solid lightsteelblue;
     border-radius: 5px;
-    width: 700px;
+    width: 800px;
     heigh: 200px:
+    font-family: applechancery
+}
+
+#pictures{
+    border: 1px solid lightsteelblue;
+    border-radius: 5px;
+    width: 1000px;
+    
+}
+
+img{
+    width: 300px;
+    height: 300px;
 }
