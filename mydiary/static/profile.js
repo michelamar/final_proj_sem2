@@ -1,23 +1,30 @@
 var canvas = document.getElementById("canvas");
+var numPosts = document.getElementById("filler").innerHTML;
+numPosts = numPosts.replace("[","");
+numPosts = numPosts.replace("]","");
+numPosts = numPosts.replace(" ","");
+numPosts = numPosts.split(",");
+
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
 
 
-
-var height1 = 3;
-var height2 = 4;
-var height3 = 1;
-var height4 = 6;
-var height5 = 1;
-var height6 = 2;
-var height7 = 4;
+var height1 = numPosts[0];
+var height2 = numPosts[1];
+var height3 = numPosts[2];
+var height4 = numPosts[3];
+var height5 = numPosts[4];
+var height6 = numPosts[5];
+var height7 = numPosts[6];
 
 var maxNum = Math.max(height1,height2,height3,height4,height5,height6,height7);
 
 var draw = function(){
     d3.selectAll("svg > *").remove();
+    
+    console.log(numPosts);
     
     var bar1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
     bar1.setAttribute("fill", "lightsteelblue");
