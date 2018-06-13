@@ -1,6 +1,8 @@
 # MyDiary
 mydiary.stuycs.org
 
+Video: https://youtu.be/xUpWFanDnGU
+
 # What is it?
 MyDiary is a cloud-based diary system that allows users to add entries and pictures about their days that they can look at and update.
 
